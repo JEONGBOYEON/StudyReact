@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Example</title>
+</head>
+
+<body>
+    <div id="root"> </div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        //props, function
+        // function Component(props) {
+        //     return (
+        //         <div>
+        //             <h1>
+        //                 {props.message} 이것은 함수로 만든 컴포넌트 입니다.
+        //             </h1>
+        //         </div>
+        //     );
+        // }
+
+        //props, Class
+        class Component extends React.Component {
+            render(){
+                return (
+                    <div>
+                        <h1>
+                            {this.props.message} 이것은 클래스로 만든 컴포넌트 입니다.
+                        </h1>
+                    </div>
+                );
+            }
+
+            // static defaultProps = {
+            //     message: "기본값Static" ,
+            // };
+        }
+
+        //function은 매개변수 형태로 props를 받음
+        //class는 매개변수 형태 아님, this 사용
+        //class는 extend, render()이라는 구문이 추가됨
+
+
+        //Default props를 사용해줄수 있는 두가지 방법
+        
+        // 1.클래스와 function 모두 사용 가능
+        // Component.defaultProps = {
+        //     message: "기본값" ,
+        // };
+
+        // 2. 클래스 내부에 해당 키워드를 선언, 클래스에서만 사용 가능
+        // static defaultProps = {
+        //     message: "기본값" ,
+        // };
+
+
+        ReactDOM.render(
+            <Component />,
+            document.querySelector('#root')
+        )
+
+    </script>
+</body>
+
+</html>
+

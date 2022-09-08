@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Example</title>
+</head>
+
+<body>
+    <div id="root"> </div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+
+        // 나중에 Hook 기능을 쓰면 function Component도 사용 가능하지만 우선 Class Component에 관한 부분만 학습
+        // State도 두가지 방법이 존재
+        // class Component에 멤버변수로 두면 그냥 그게 State로 정의가 된것
+
+        //props, Class
+        class Component extends React.Component {
+            // 1. 항상 객체 형태로 주어야 한다.
+            // state = {
+            //     count: 0,
+            // };
+
+            // 2. 생성자를 이용한 State 선언
+            // 생성자함수는 항상 props를 인자로 받아서 호출
+            // 상속 받은것이기 때문에 super
+            constructor(props) {
+                super(props);
+
+                this.state = { count:0 };
+            }
+            
+            render(){
+                return (
+                    <div>
+                        <h1>
+                            {this.props.message} 이것은 클래스로 만든 컴포넌트 입니다.
+                        </h1>
+                        <p>{this.state.count}</p>
+                    </div>
+                );
+            }
+
+            componentDidMount(){
+                setTimeout(() => {
+                    // 아래와 같이 직접 수정하면 다시 rendering 되지 않기 때문에 반영이 안된다.
+                    // this.state.count = this.state.count + 1; 
+                    
+                    // 따라서 아래와 같이 setState 함수에 다시 객체를 선언해주어야 한다.
+                    this.setState({
+                        count: this.state.count + 1,
+                    });
+                }, 1000);
+            }
+        }
+        
+        Component.defaultProps = {
+            message: "기본값" ,
+        };
+
+        ReactDOM.render(
+            <Component />,
+            document.querySelector('#root')
+        )
+    </script>
+</body>
+
+</html>
+

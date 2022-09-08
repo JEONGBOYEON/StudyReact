@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Example</title>
+</head>
+
+<body>
+    <div id="root"> </div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        // function Component(){
+        //     return (
+        //         <div>
+        //             <button onClick={()=> {
+        //                 console.log("clicked");
+        //             }}>
+        //                 클릭
+        //             </button>
+        //         </div>
+        //     );
+        // }
+
+        class Component extends React.Component {
+
+            state = {
+                count: 0,
+            }
+
+            // https://im-developer.tistory.com/98
+            constructor(props){
+                super(props);
+                this.click = this.click.bind(this);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <p>{this.state.count}</p>
+                        <button onClick={this.click}>
+                            클릭
+                        </button>
+                    </div>
+                );
+            }
+
+            // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+            click = () => {
+                console.log("clicked");
+                this.setState((state) => ({
+                    ...state,
+                    count: this.state.count + 1
+                }));
+            }
+        }
+
+        ReactDOM.render(<Component />, document.querySelector("#root"));
+    </script>
+</body>
+
+</html>
+
