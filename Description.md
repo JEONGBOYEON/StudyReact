@@ -284,3 +284,46 @@ Route />에서 컴포넌트 렌더링
 - V6 부터는 useLocation
   const { search } = useLocation();
   const { name } = queryString.parse(search);
+
+-- Hooks & Context
+Hook이라는 기술은 최근에 나온 기술
+
+> Class CP 말고 Function CP도 state, lifecycle 쓸수 있게 해줌
+> state관련된 로직을 재사용 할 수 있다.
+> Context: CP간 통신을 쉽게 해줄수 있게 해줌
+
+npx create-react-app react-hooks-example
+
+- 기존 Class State
+  state = {
+  count: 0,
+  };
+
+const { count } = this.state;
+
+//setState 함수로 새롭게 정의
+this.setState({ count: this.state.count + 1 });
+
+- function의 useState라는 Hook - 값
+  const [count, setCount] = React.useState(0);
+
+{count}
+
+setCount(count + 1)
+
+- function의 useState라는 Hook - 객체
+  const [state, setCount] = React.useState({count : 0});
+
+{state.count}
+
+setCount({ count: state.count + 1 })
+
+setState((state) => {
+return {
+count: state.count + 1,
+};
+});
+
+- 결론적으로
+  ASIS: Functional Component = Stateless Component = Statless Functional Component
+  TOBE: Functional Component != Stateless Component
