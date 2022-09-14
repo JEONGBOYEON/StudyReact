@@ -1,16 +1,62 @@
-## Redux
+# 1. Redux 핵심 키워드
 
+```
 npx create-react-app redux-start
 cd redux-start
 npm i redux
+```
 
-## Reduc Action
+## 액션(Action)
 
-Action은 그냥 객체이다.
-두가지 형태의 액션이 있다.
+상태에 어떤 변화가 필요할게 되면, 액션을 발생시킵니다. 액션은 **객체**로 표현되며, 종류는 두가지가 있습니다.
 
-1. payload 없는 액션(필수 프로퍼티인 type만 있는, type은 문자열)
-2. payload 있는 액션(여러가지 프로퍼티)
+1. Type만 있는 액션(Type 필수)
+
+```javascript
+{
+  type: "ADD_VALUE";
+}
+```
+
+2. Payload가 있는 액션(Type 필수)
+
+```javascript
+{
+  type: "ADD_VALUE",
+  data: {
+    id: 0,
+    text: "리덕스 배우기"
+  }
+}
+```
+
+```javascript
+{
+  type: "ADD_VALUE",
+  text: "리덕스 배우기"
+}
+```
+
+## 액션 생성 함수(Action Creator)
+
+액션 생성 함수는 컴포넌트에서 액션을 더욱 쉽게 발생시키기 위한 함수로, 액션을 만드는 함수입니다.
+
+```javascript
+export function addTodo(data) {
+  return {
+    type: "ADD_TODO",
+    data,
+  };
+}
+
+// 화살표 함수로
+export const changeInput = (text) => ({
+  type: "CHANGE_INPUT",
+  text,
+});
+```
+
+---
 
 ## Redux Store
 
