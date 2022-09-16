@@ -130,16 +130,8 @@ SemVer이란, 버전에 의미가 있음 버전을 의미합니다.
 ## .gitignore
 버전관리가 필요없는 파일들을 무시하고 git에 올릴 수 있습니다. 
 
-
-
-
-
-<!-- 샘플 -->
-
-##
-
-### 
-
-```javascript
-
+```
+.cache/
+dist/
+node_modules/
 ```
