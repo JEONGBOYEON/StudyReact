@@ -158,10 +158,42 @@ header .logo {
 
 ## 06. 헤더&드롭다운 - 서브 메뉴
 
-###
+### CSS 가상요소 ::before, ::after
 
-```html
+가상 요소는 css를 통해서 가상의 element를 추가하는 코드입니다. 요소에 장식용 콘텐츠를 추가할때 사용하며, 기본값은 인라인 요소입니다. 또한, **content 속성과 반드시 같이 사용**해야 합니다.
 
+```css
+.text:before {
+  color: red;
+  content: "가상요소 Before";
+}
+
+.text:after {
+  color: skyblue;
+  content: "가상요소 after";
+}
+```
+
+### 가상 클래스 선택자
+
+선택자 뒤에 :가상이벤트를 붙이면 특정 이벤트마다 적용 할 스타일을 설정 할 수 있으며, 이를 가상 클래스라고 부릅니다.
+
+> :link - 방문한 적이 없는 링크
+> :visited - 방문한 적이 있는 링크
+> :hover - 마우스를 롤오버 했을 때
+> :active - 마우스를 클릭했을 때
+> :focus - 포커스 되었을 때 (input 태그 등)
+> :first - 첫번째 요소
+> :last - 마지막 요소
+> :first-child - 첫번째 자식
+> :last-child - 마지막 자식
+> :nth-child(2n+1) - 홀수 번째 자식
+
+```css
+li:first-child::before {
+  content: "";
+  display: none;
+}
 ```
 
 ## 07. 헤더&드롭다운 - 검색

@@ -9,6 +9,9 @@ body {
 img {
   display: block;
 }
+a {
+  text-decoration: none;
+}
 
 /* HEADER */
 header {
@@ -28,9 +31,65 @@ header .logo {
   bottom: 0;
   left: 0;
   margin: auto 0;
+  display: none;
   /* width: 75px;
   left: 0;
   right: 0;
   margin: 0 auto;
   margin: auto; */
+}
+
+header .sub-menu {
+}
+header .sub-menu ul.menu {
+  display: flex;
+  /* Arial가 없으면 sans-serif 적용*/
+  font-family: Arial, sans-serif;
+}
+header .sub-menu ul.menu li {
+  position: relative;
+}
+/* ::before은 요소에 장식용 콘텐츠를 추가할때 사용가능합니다. 인라인 요소이며, content 속성과 반드시 같이 사용해야 합니다. */
+header .sub-menu ul.menu li::before {
+  content: "";
+  /* 가로, 세로 값을 가질 수 있게 하기 위해 block으로 변경*/
+  /* display: block; */
+  height: 12px;
+  width: 1px;
+  background-color: #e5e5e5;
+
+  /*  position: absolute이면 display:block으로 자동 설정됨, 생략 가능 */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+/* first-child 가상 클래스 선택자 */
+header .sub-menu ul.menu li:first-child::before {
+  content: "";
+  display: none;
+}
+header .sub-menu ul.menu li a {
+  font-size: 12px;
+  /* 사용자가 클릭할 수 있는 범위를 넓혀준다. */
+  /* a 태그는 inline이기 때문에 원래 margin, padding, 가로, 세로 값을 가질 수 없기 때문에 block 요소로 변화해 주어야 함*/
+  padding: 11px 16px;
+  display: block;
+  color: #656565;
+}
+header .sub-menu ul.menu li a:hover {
+  color: #000;
+}
+
+header .sub-menu .search {
+  background-color: red;
+  height: 34px;
+}
+header .sub-menu .search input {
+  width: 36px;
+  height: 34px;
+  padding: 4px 10px;
+  /* display: block; */
+}
+header .sub-menu .search .material-icons {
 }
