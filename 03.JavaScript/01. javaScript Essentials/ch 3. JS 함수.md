@@ -145,18 +145,50 @@ num = 6; // 초기화
 
 ## 타이머 함수
 
-<!-- 1. set -->
-
-###
+1. setTimeout(함수, 시간) : 일정 시간 후 함수 실행
+2. clearTimeout() : 설정된 Timeout 함수를 종료
+3. setInterval(함수, 시간) : 시간 간격마다 함수 실행
+4. clearInterval() : 설정된 Interval
 
 ```javascript
+// 익명함수에서 화살표 함수로 변환
+setTimeout(function () {}, 3000);
+setTimeout(() => {}, 3000);
 
+const timer = setTimeout(() => {
+  console.log("Heropy!");
+}, 3000);
+
+const interval = setInterval(() => {
+  console.log("Heropy!");
+}, 3000);
+
+const h1El = document.querySelector("h1");
+// 익명함수에서 화살표 함수로 변환
+h1El.addEventListener("click", function () {});
+h1El.addEventListener("click", () => {
+  clearTimeout(timer);
+  clearInterval(interval);
+});
 ```
 
 ## 콜백
 
-###
+함수의 인수로 사용되는 함수, 함수 호출 시 인자로 익명 함수를 정의한 후, 함수정의 함수에서 파라미터로 받은 익명 함수를 호출하면 함수 내의 원하는 위치에서 실행시킬 수 있습니다.
+
+<img width="363" alt="image" src="https://user-images.githubusercontent.com/32887635/190852496-6da3128e-a2d6-4ffb-b58f-f494ae75d977.png">
 
 ```javascript
+const timeout = (callback) => {
+  setTimeout(() => {
+    console.log("Hi");
+    callback();
+  }, 3000);
+};
 
+// 함수 호출시 인자로 익명의 함수를 정의 >> 콜백 함수
+timeout(function () {});
+timeout(() => {
+  console.log("hi");
+});
 ```

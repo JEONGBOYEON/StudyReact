@@ -50,4 +50,41 @@
 
 // scope();
 
-// JS 함수
+// 타이머 함수
+
+// setTimeout(,)
+
+// setTimeout(function () {
+//     console.log
+// },3000)
+
+// const timer = setTimeout(() => {
+//   console.log("Heropy!");
+// }, 3000);
+
+// const interval = setInterval(() => {
+//   console.log("Heropy!");
+// }, 3000);
+
+// const h1El = document.querySelector("h1");
+// h1El.addEventListener("click", function () {});
+// h1El.addEventListener("click", () => {
+//   clearTimeout(timer);
+//   clearInterval(interval);
+//   console.log("clear");
+// });
+
+//콜백 함수
+
+const timeout = (callback) => {
+  setTimeout(() => {
+    console.log("Hi");
+    callback();
+  }, 3000);
+};
+
+// 함수 호출시 인자로 익명의 함수를 정의 >> 콜백 함수
+timeout(function () {});
+timeout(() => {
+  console.log("hi");
+});
