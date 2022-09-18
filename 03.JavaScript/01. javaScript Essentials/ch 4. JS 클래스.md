@@ -67,16 +67,92 @@ User.prototype.getFullUserInfor = () => {
 
 ## ES6 Classes
 
-###
+### Classes 문법
+
+기존의 자바스크립트에서는 prototype을 이용해 유사하게 상속을 구현했었습니다. ES6이후 Class가 나오면서 명료하고 간편하게 객체를 생성하고, 상속을 구현할 수 있습니다.
+
+\*내부적으로 class는 기존의 prototype을 연결하는 속기법일 뿐입니다.
+
+### Classes 사용법
+
+1. new 키워드를 이용한 Class 생성
 
 ```javascript
+// ASIS
+// function Coupon() {}
+// const coupon = new Coupon();
 
+// TOBE
+class Coupon {}
+const coupon = new Coupon();
+```
+
+2. constructor() 생성자 함수로 속성 설정
+
+```javascript
+// ASIS
+// function Coupon(price, expiration) {
+        this.price = price;
+        this.expiration = expiration || '2주'}
+// const coupon = new Coupon(5);
+
+// TOBE
+class Coupon {
+    constructor (price, expiration) {
+        this.price = price;
+        this.expiration = expiration || '2주'
+    }
+}
+const coupon = new Coupon(5)
+console.log(coupon.price)            // 5
+console.log(coupon['expiration'])    // 2주
+```
+
+3. 메서드 정의하기
+
+```javascript
+// ASIS
+// function Coupon(price, expiration) {
+        this.price = price;
+        this.expiration = expiration || '2주'}
+// Coupon.prototype.getPriceText() {
+//     return `$${this.price}`
+// }
+
+// TOBE
+class Coupon {
+    constructor (price, expiration) {
+        this.price = price;
+        this.expiration = expiration || '2주'
+    }
+    getPriceText() {
+        return `$${this.price}`
+    }
+}
+const coupon = new Coupon(5);
+console.log(coupon.getPriceText); // 5
 ```
 
 ## 상속(확장)
 
-###
+javascript의 class는 상속(확장) 쉽게 가능하다. extend로 부모 class를 상속 받아 온후, 내부에서 super() 메서드는 부모클래스의 생성자를 호출합니다. \*반드시 super()을 호출한 뒤에 새로운 속성을 추가하거나 부모속성을 덮어 씌울 수 있습니다.
 
 ```javascript
-
+class FlashCoupon extends Coupon {
+  constructor(price, expiration) {
+    super(price); // 부모클래스 생성자 호출
+    this.expiration = expiration || "2시간"; // 속성 덮어씌움
+  }
+  getExpirationMessage() {
+    // 동일이름 메서드 대체
+    return `이 쿠폰은 깜짝쿠폰이며 ${this.expiration}후에 만료됩니다.`;
+  }
+}
+const flash = new FlashCoupon(10);
+console.log(flash.price); // 10
+console.log(flash.getPriceText()); // $10
+console.log(flash.getExpirationMessage());
+// "이 쿠폰은 2시간 후에 만료됩니다.
 ```
+
+[..](https://velog.io/@kwonh/ES6-Class-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B01-%EC%82%AC%EC%9A%A9%EB%B2%95%EA%B3%BC-prototype)
