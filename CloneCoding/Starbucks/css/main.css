@@ -5,6 +5,7 @@ body {
   font-weight: 400;
   line-height: 1.4;
   font-family: "Nanum Gothic", sans-serif;
+  height: 3000px;
 }
 img {
   display: block;
@@ -20,6 +21,10 @@ a {
 
 /* HEADER */
 header {
+  /* fixed로 하면 스크롤을 내려도 viewfort 기준으로 계속 보임 */
+  position: fixed;
+  /* position이 fixed이거나 absolute일때는 width가 최소한으로 보여지려고 하기 때문에 확대, 축소해도 꽉찬 화면을 원한다면 100%속성을 주어야함 */
+  width: 100%;
   background-color: #f6f5f0;
   border-bottom: 1px solid #c8c8c8;
 }
@@ -197,4 +202,19 @@ header .main-menu .item__contents .contents__texture h4 {
 header .main-menu .item__contents .contents__texture p {
   color: #669900;
   margin: 4px 0 14px;
+}
+
+header .badges {
+  position: absolute;
+  top: 132px;
+  right: 12px;
+}
+
+header .badges .badge {
+  border-radius: 10px;
+  /* 이미지가 모서리 바깥으로 넘치지 않도록 hidden */
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }
