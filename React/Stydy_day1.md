@@ -8,7 +8,10 @@
 3. 브라우저는 해당 문서들을 파싱한 후 사용자에게 제공한다.
 
 ### 브라우저의 기본 구조
-![image](https://user-images.githubusercontent.com/32887635/200104553-63364747-0294-4370-b091-13b3c4df6e35.png)
+
+<img width="246" alt="image" src="https://user-images.githubusercontent.com/32887635/200104553-63364747-0294-4370-b091-13b3c4df6e35">
+                                  
+                                  
 1. 사용자 인터페이스 - 주소 표시줄, 이전/다음 버튼, 북마크 메뉴 등. 요청한 페이지를 보여주는 창을 제외한 나머지 모든 부분이다.
 2. 브라우저 엔진 - 사용자 인터페이스와 렌더링 엔진 사이의 동작을 제어.
 3. 렌더링 엔진 - 요청한 콘텐츠를 표시. 예를 들어 HTML을 요청하면 HTML과 CSS를 파싱하여 화면에 표시함.
@@ -20,7 +23,9 @@
 ### 랜더링 엔진(Webkit) 동작 방식
 렌더링 엔진은 사용자의 요청에 따른 서버의 응답 내용인 HTML, CSS 등의 리소스들을 파싱하여 브라우저에 표시한다.
 * 크롬,사파리는 웹킷, 파이어폭스는 게코
-![image](https://user-images.githubusercontent.com/32887635/200104614-609f9bc2-609b-42c5-8df5-e4bacbc5fd50.png)
+
+<img width="246" alt="image" src="https://user-images.githubusercontent.com/32887635/200104614-609f9bc2-609b-42c5-8df5-e4bacbc5fd50.png">
+
 1. 먼저 서버의 응답 내용중 HTML파일을 파싱 후 DOM 트리를 구축한다.
 또한 CSS파일 및 style요소 모두에서 스타일 데이터 파싱 후 CSSOM (CSS object model)Tree를 구축한다.
 2. 그 후 완성된 돔 트리들을 Attachment 작업을 거친다. 이는 HTML 규칙에 맞게 스타일 정보를 사용하여 렌더 트리를 생성하는 과정이다. 게코 엔진에서는 콘텐츠 싱크 레이어를 거친다고 말한다.
@@ -59,7 +64,8 @@ DOM은 HTML 문서의 내용을 볼 수 있는 인터페이스 역할을 하는 
 ---
 
 ### Virtual DOM
-사실 가상 DOM은 일반적인 자바스크립트 객체일 뿐입니다. 
+사실 가상 DOM은 일반적인 자바스크립트 객체일 뿐입니다. 그렇기 때문에 DOM을 직접 건드리지 않고도 자유롭게 조작할 수 있다. diffing 알고리즘을 통해 이전 DOM과 업데이트된 DOM을 비교하여 최소한의 연산을 하여 DOM을 작동시킬 수 있습니다. Virtual DOM은 메모리상에 존재한다.
+ 
 ```javascript
 const vdom = {
     tagName: "html",
@@ -85,7 +91,7 @@ const vdom = {
 } // end html
 ```
 
-
+> https://bitsofco.de/understanding-the-virtual-dom/
 
 
 
