@@ -9,9 +9,8 @@
 
 ### 브라우저의 기본 구조
 
-<img width="246" alt="image" src="https://user-images.githubusercontent.com/32887635/200104553-63364747-0294-4370-b091-13b3c4df6e35">
-                                  
-                                  
+<img width="446" alt="image" src="https://user-images.githubusercontent.com/32887635/200104614-609f9bc2-609b-42c5-8df5-e4bacbc5fd50.png">
+
 1. 사용자 인터페이스 - 주소 표시줄, 이전/다음 버튼, 북마크 메뉴 등. 요청한 페이지를 보여주는 창을 제외한 나머지 모든 부분이다.
 2. 브라우저 엔진 - 사용자 인터페이스와 렌더링 엔진 사이의 동작을 제어.
 3. 렌더링 엔진 - 요청한 콘텐츠를 표시. 예를 들어 HTML을 요청하면 HTML과 CSS를 파싱하여 화면에 표시함.
@@ -24,7 +23,7 @@
 렌더링 엔진은 사용자의 요청에 따른 서버의 응답 내용인 HTML, CSS 등의 리소스들을 파싱하여 브라우저에 표시한다.
 * 크롬,사파리는 웹킷, 파이어폭스는 게코
 
-<img width="246" alt="image" src="https://user-images.githubusercontent.com/32887635/200104614-609f9bc2-609b-42c5-8df5-e4bacbc5fd50.png">
+<img width="446" alt="image" src="https://user-images.githubusercontent.com/32887635/200104614-609f9bc2-609b-42c5-8df5-e4bacbc5fd50.png">
 
 1. 먼저 서버의 응답 내용중 HTML파일을 파싱 후 DOM 트리를 구축한다.
 또한 CSS파일 및 style요소 모두에서 스타일 데이터 파싱 후 CSSOM (CSS object model)Tree를 구축한다.
