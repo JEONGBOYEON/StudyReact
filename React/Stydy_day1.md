@@ -9,7 +9,7 @@
 
 ### 브라우저의 기본 구조
 
-<img width="446" alt="image" src="https://user-images.githubusercontent.com/32887635/200104614-609f9bc2-609b-42c5-8df5-e4bacbc5fd50.png">
+<img width="446" alt="image" src="https://user-images.githubusercontent.com/32887635/200112894-6ec74b98-89ab-4e45-9af3-e91eba299929.png">
 
 1. 사용자 인터페이스 - 주소 표시줄, 이전/다음 버튼, 북마크 메뉴 등. 요청한 페이지를 보여주는 창을 제외한 나머지 모든 부분이다.
 2. 브라우저 엔진 - 사용자 인터페이스와 렌더링 엔진 사이의 동작을 제어.
