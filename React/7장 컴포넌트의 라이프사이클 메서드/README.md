@@ -220,3 +220,83 @@ class LifeCycleSample extends Component {
 
 export default LifeCycleSample;
 ```
+
+```jsx
+import React, { Component } from ‘react‘;
+import LifeCycleSample from ‘./LifeCycleSample‘;
+
+// 랜덤 색상을 생성합니다.
+function getRandomColor() {
+  return ‘#‘ + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+class App extends Component {
+  state = {
+    color: ‘#000000‘
+  }
+
+handleClick = () => {
+    this.setState({
+      color: getRandomColor()
+    });
+  }
+
+render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>랜덤 색상</button>
+        <LifeCycleSample color={this.state.color}/>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+## 에러 발생하기
+
+컴포넌트에 에러가 발생할 경우 componentDidCatch 메소드를 이용하여 사용자에게 에러 발생했음을 알려주는 부분을 추가할 수 있습니다.
+
+componentDidCatch는 컴포넌트 자신에게 발생하는 에러를 잡아낼 수 없고 자신의 this.props.children으로 전달되는 컴포넌트에서 발생하는 에러만 잡아낼 수 있기 때문에 에러를 잡고자 하는 컴포넌트를 App.js에서 새로 생성한 에러 관련 컴포넌트로 감싸줍니다.
+
+```jsx
+class App extends Component {
+...
+
+render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>랜덤 색상</button>
+        <ErrorBoundary>
+          <LifeCycleSample color={this.state.color}/>
+        </ErrorBoundary>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+```jsx
+import React, { Component } from "react";
+
+class ErrorBoundary extends Component {
+  state = {
+    error: false,
+  };
+  componentDidCatch(error, info) {
+    this.setState({
+      error: true,
+    });
+    console.log({ error, info });
+  }
+  render() {
+    if (this.state.error) return <div>에러가 발생했습니다!</div>;
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
+```
