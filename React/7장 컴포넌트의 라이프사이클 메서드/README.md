@@ -135,3 +135,88 @@ componentDidCatch(error, info) {
 여기서 error는 파라미터에 어떤 에러가 발생했는지 알려 주며, info 파라미터는 어디에 있는 코드에서 오류가 발생했는지에 대한 정보를 줍니다. 앞의 코드에서는 그저 console.log만 했지만, 나중에 실제로 사용할 때 오류가 발생하면 서버 API를 호출하여 따로 수집할 수도 있습니다.
 
 그러나 이 메서드를 사용할 때는 컴포넌트 자신에게 발생하는 에러를 잡아낼 수 없고 자신의 this.props.children으로 전달되는 컴포넌트에서 발생하는 에러만 잡아낼 수 있다는 점을 알아 두어야 합니다. 이 메서드를 사용하는 방법은 7.3.3절 ‘에러 잡아내기’에서 알아보겠습니다.
+
+## 예제
+
+```jsx
+import React, { Component } from ‘react‘;
+
+class LifeCycleSample extends Component {
+  state = {
+    number: 0,
+    color: null,
+  }
+
+  myRef = null; // ref를 설정할 부분
+
+  constructor(props) {
+    super(props);
+    console.log(‘constructor‘);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(‘getDerivedStateFromProps’);
+    if(nextProps.color != = prevState.color) {
+      return { color: nextProps.color };
+    }
+    return null;
+  }
+
+  componentDidMount() {
+    console.log(‘componentDidMount‘);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(‘shouldComponentUpdate‘, nextProps, nextState);
+    // 숫자의 마지막 자리가 4면 리렌더링하지 않습니다.
+    return nextState.number % 10 != = 4;
+  }
+
+  componentWillUnmount() {
+    console.log(‘componentWillUnmount‘);
+  }
+
+  handleClick = () => {
+    this.setState({
+      number: this.state.number + 1
+    });
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log(‘getSnapshotBeforeUpdate‘);
+    if(prevProps.color != = this.props.color) {
+      return this.myRef.style.color;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(‘componentDidUpdate‘, prevProps, prevState);
+    if(snapshot) {
+      console.log(‘업데이트되기 직전 색상: ‘, snapshot);
+    }
+  }
+
+  render() {
+    console.log(‘render‘);
+
+    const style = {
+      color: this.props.color
+    };
+
+    return (
+      <div>
+        <h1 style={style} ref={ref => this.myRef=ref}>
+          {this.state.number}
+        </h1>
+        <p>color: {this.state.color}</p>
+        <button onClick={this.handleClick}>
+          더하기
+        </button>
+      </div>
+    )
+  }
+}
+
+export default LifeCycleSample;
+```
