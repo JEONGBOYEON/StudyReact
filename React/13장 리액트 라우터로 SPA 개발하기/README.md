@@ -36,7 +36,7 @@ ReactDOM.render(
 
 ```js
 <Routes>
-    <Route path="주소규칙" component={보여 줄 컴포넌트} />
+    <Route path="주소규칙" element={보여 줄 컴포넌트} />
 </Routes>
 ```
 
@@ -136,3 +136,5 @@ export default Profile;
 ```
 
 ### 쿼리스트링
+
+쿼리스트링은 useLocation Hook을 사용하여 객체 형태로 조회 할 수 있습니다.
