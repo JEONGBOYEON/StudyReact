@@ -179,7 +179,70 @@ if(typeof maybe === "string"){
 
 ### 11. never
 
+never는 모든 type의 subtype이며, 모든 타입에 할당 할 수 있습니다.  
+하지만, never에는 그 어떤 것도 할당 할 수 없습니다.(any 조차)  
+never는 `잘못된 타입을 넣는 실수`를 막고자 사용  
+<aside>
+💡 사용처
+
+</aside>
+
+1. 일반적으로 return type에 사용된다   
+    ⇒ 아무것도 return 되지 않는다…?   
+    ⇒ 함수의 바디 부분이 끝나지 않을때 사용하는 type  
+
+```jsx
+//1. throw를 하게 되면 밑으로 내려오지 않는다.
+function error(message: string): never {
+	throw new Error(message);
+}
+
+//2. while(true) 이면 반복문을 빠져나가지 못해, 밑으로 내려가지 못한다.
+function infiniteLoop(): never {
+	while(true){
+	...
+	}
+}
+```
+
+1. 제너릭 type의 never 활용
+
+```jsx
+//제너릭 type의 never 활용
+//조건부 type
+type Indexable<T> = T extends string ? T & { [index: string]: any } : never;
+
+//타입이 변수처럼 쓰이는
+type ObjectIndexable = Indexable<{}>;
+
+const b: Indexable<{"string"}> = 'Stirng'; //T가 string이라서 b의 type은 string
+const c: Indexable<{"boolean"}> = true;  //T가 string이 아니라서 c의 type은 never인데 값을 넣으려고 시도하였기 때문에 error
+```
+
+1. 잘못된 타입일 경우 never로 type 지정
+
+```jsx
+declare const a: string | number;
+
+if(typeof a !== "string"){
+	a; 
+}
+```
+
 ### 12. void
+
+어떤 값을 가지지 않는 타입을 의미  
+값은 없고, 타입만 존재
+
+```jsx
+function returnVoid(message: string): void {
+	console.log(messgae);
+	return;
+	return undefined;
+}
+
+const r = returnVoid("리턴이 없다"); //r의 type은 void
+```
 
 ---
 
