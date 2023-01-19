@@ -129,8 +129,7 @@ const [first, second, third] = person; // error
 
 ### 9. any
 
-type이 모르는 상태에서 모든 것을 사용할 수 있음.
-
+type이 모르는 상태에서 모든 것을 사용할 수 있음.  
 정확한 Typescript를 위해서는 사용 안하는게 더 좋음 = **타입 안정성**을 잃는다.
 
 ```jsx
@@ -145,18 +144,15 @@ any1.toString();
 
 ### 10. unknown
 
-any의 불안정함을 대체하고자 나온 type
-
-api를 통해서 얻어오는 동적 값과 같이 **모르는 변수의 타입을 묘사**해야 할 수 있습니다.
-
+any의 불안정함을 대체하고자 나온 type. 
+api를 통해서 얻어오는 동적 값과 같이 **모르는 변수의 타입을 묘사**해야 할 수 있습니다.  
 그때 any or unknown을 사용할 수 있는데, unknown이 좀 더 type-safe한 타입이다.
 
 ```jsx
 declare const maybe: unknown;
 ```
 
-unknown
-
+unknown  
 - 컴파일러가 타입을 추론할 수 있게끔 타입 유형을 좁힌다.
 - 타입을 확정해주지 않으면 다른곳에 할당 할 수 없고, 사용 할 수 없다.
 - runtime error를 줄일 수 있다.
