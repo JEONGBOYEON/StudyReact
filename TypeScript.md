@@ -129,8 +129,10 @@ const [first, second, third] = person; // error
 
 ### 9. any
 
-type이 모르는 상태에서 모든 것을 사용할 수 있음.  
-정확한 Typescript를 위해서는 사용 안하는게 더 좋음 = **타입 안정성**을 잃는다.  
+type이 모르는 상태에서 모든 것을 사용할 수 있음.
+
+정확한 Typescript를 위해서는 사용 안하는게 더 좋음 = **타입 안정성**을 잃는다.
+
 ```jsx
 //function의 return 값도 type 지정 가능
 function returnAny(message: any): any {
@@ -143,6 +145,99 @@ any1.toString();
 
 ### 10. unknown
 
+any의 불안정함을 대체하고자 나온 type
+
+api를 통해서 얻어오는 동적 값과 같이 **모르는 변수의 타입을 묘사**해야 할 수 있습니다.
+
+그때 any or unknown을 사용할 수 있는데, unknown이 좀 더 type-safe한 타입이다.
+
+```jsx
+declare const maybe: unknown;
+```
+
+unknown
+
+- 컴파일러가 타입을 추론할 수 있게끔 타입 유형을 좁힌다.
+- 타입을 확정해주지 않으면 다른곳에 할당 할 수 없고, 사용 할 수 없다.
+- runtime error를 줄일 수 있다.
+
+```jsx
+declare const maybe: unknown;
+
+const aNumber: number = maybe; // error(any였을때는 error 안남)
+
+//타입 가드
+if(maybe === true){
+	//이 if절 안에서의 maybe의 type은 ture이다.(boolean의 subType)
+	const aBoolean: boolean = maybe;
+	const aString: string = maybe; //error
+}
+
+//typeof 타입가드
+if(typeof maybe === "string"){
+	//이 if절 안에서의 maybe의 type은 String이다.
+	const aBoolean: boolean = maybe; //error
+	const aString: string = maybe; 
+}
+```
+
 ### 11. never
 
 ### 12. void
+
+---
+
+
+### declare
+
+```jsx
+declare let module: any
+```
+
+declare은 compiler에게 `"얘는 이미 존재하는 칭구야. 그러니까 다른 코드에서 참조될 수 있어. 그리고 Javascript로 컴파일 될 필요가 없어."`라고 알려주는 keyword
+
+<aside>
+💡 사용처!
+
+</aside>
+
+1. 만일 typescript로 개발하던 중에 아주 잘 작성된 JS 모듈을 가져와 쓰고자 한다면, 해당 모듈은 typescript로 정의되어있지 않기 때문에 컴파일 과정에서 오류가 뜬다. 이는 type이 정해져 있지 않기 때문이다.
+    
+    따라서 다음과 같이 declare 키워드를 써서 정의해두면 type이 인식되어 typescript compiler가 해석할 수 있게 된다.
+    
+2. Javascript로만 만들어진 라이브러리 등을 사용할 때, Typescript만 가지고 있는 문법같은게 있는데, 예를 들어서 `type myType = "type1" | "type2";` 와 같은 거 말이야. 그럴 때, compiler한테 이 Typscript 코드는 Javascript로 변환 할 필요가 없다고 알려주는 역할을 해.
+    
+    참고로 Typescript는 다른 언어랑은 다르게 컴파일러가 Typescript 코드를 받았을 때, 바이트코드가 아닌 Javascript 코드로 변환해 줘. 그럼 다시 Javascript를 바이트코드로 변환해주는 과정을 거치게 돼.
+    
+
+---
+
+### 타입스크립트에서 이벤트 객체 타입 지정하기
+
+타입스크립트로 프로젝트를 진행하다 보면 DOM의 <HTMLInputElement>와 같은 특이한 타입들을 만나게 됩니다.
+
+```jsx
+const onChangeEmail = e => {
+	setEmail(e.target.value);
+}
+
+<input onChange = {onChangeEmail} type ="email"/>
+```
+
+위 코드의 이벤트 콜백 인자 e의 타입은 any가 아닌 `React.ChangeEvent<HTMLInputElement>` 입니다.  
+따라서 실제 프로젝트에서는 아래와 같이 구현해야 합니다.
+
+1. Event 타입 지정
+2. 제네릭 지정
+
+```jsx
+import React, { ChangeEvent } from 'react';
+
+...
+const onChangeEmail = (e: ChangeEvent<HTMLSelectElement>) => {
+	setEmail(e.target.value);
+}
+
+<input onChange = {onChangeEmail} type ="email"/>
+```
+
