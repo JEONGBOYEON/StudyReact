@@ -6,6 +6,9 @@
   - [React.memo](https://github.com/JEONGBOYEON/study-react/blob/main/study_react/%EC%84%B1%EB%8A%A5/React_memo.md)
   - [shallow compare와React.PureComponent](https://github.com/JEONGBOYEON/study-react/blob/main/study_react/%EC%84%B1%EB%8A%A5/shallow%20compare%EC%99%80React.PureComponent.md)
 
+- 라이브러리
+  - [Yup 라이브러리](https://github.com/JEONGBOYEON/study-front/blob/main/Yup%20%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC.md)
+  - [React Hook Form - Controller, useController](https://github.com/JEONGBOYEON/study-front/blob/main/React%20Hook%20Form%20-%20Controller%2C%20useController.md)
 ### REDUX
 
 - [01. Redux 핵심키워드](https://github.com/JEONGBOYEON/study-react/blob/main/study_redux/01.%20Redux%20%ED%95%B5%EC%8B%AC%20%ED%82%A4%EC%9B%8C%EB%93%9C.md)
